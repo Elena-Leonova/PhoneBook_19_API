@@ -1,7 +1,13 @@
 package dto;
 
-import java.util.List;
+import lombok.*;
 
+import java.util.List;
+@Setter
+@Getter
+@Builder
+@ToString
+@AllArgsConstructor
 public class GetAllContactsDTO {
 
     List<ContactDTO> contacts;
