@@ -26,7 +26,7 @@ public class GetAllContacts {
 
         Response response = client.newCall(request).execute();
         Assert.assertTrue(response.isSuccessful());
-        
+
         GetAllContactsDTO contacts = gson.fromJson(response.body().string(), GetAllContactsDTO.class);
 
         for(ContactDTO contactDTO : contacts.getContacts()){
