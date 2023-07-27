@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class RegistrationTests {
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
@@ -17,8 +18,9 @@ public class RegistrationTests {
 
     @Test
     public void registrationPositive() throws IOException {
+        int i = new Random().nextInt(1000) + 1000;
         AuthRequestDTO requestDTO = AuthRequestDTO.builder()
-                .username("gosha.pupkin@gmail.com")
+                .username("gosha.pupkin" + i +"@gmail.com")
                 .password("Mynameislena1!")
                 .build();
 
@@ -29,6 +31,7 @@ public class RegistrationTests {
                 .build();
 
         Response response = client.newCall(request).execute();
+        Assert.assertTrue(response.isSuccessful());
 
         if(response.isSuccessful()){
             String responseJson = response.body().string();
